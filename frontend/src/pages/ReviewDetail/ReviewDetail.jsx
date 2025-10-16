@@ -1,36 +1,23 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
-import Navbar from "../../layout/Navbar";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useReviews } from "../../context/ReviewContext";
+import { useAllReview } from "../../context/FetchAllReviewContext";
 import ReviewSection from "../../components/property/ReviewSection";
+import Navbar from "../../layout/Navbar";
 import "./ReviewDetail.css";
+
+// const baseURL = import.meta.env.VITE_API_URL
 
 const ReviewDetail = () => {
 	const { id } = useParams();
 	const navigate = useNavigate();
-	const [review, setReview] = useState(null);
-	const [loading, setLoading] = useState(true);
+	const location = useLocation();
 
-	useEffect(() => {
-		const fetchReview = async () => {
-			try {
-				const response = await axios.get(
-					"http://localhost:8000/api/reviews/hostaway"
-				);
-				const foundReview = response.data.find((r) => r.id === parseInt(id));
+	const { context } = location.state || {};
 
-				if (foundReview) {
-					setReview(foundReview);
-				}
-				setLoading(false);
-			} catch (error) {
-				console.error("Error fetching review:", error);
-				setLoading(false);
-			}
-		};
+	const { reviews, loading } =
+		context === "all" ? useAllReview() : useReviews();
 
-		fetchReview();
-	}, [id]);
+	const review = reviews.find((r) => r.id === parseInt(id));
 
 	if (loading) {
 		return (
@@ -48,7 +35,7 @@ const ReviewDetail = () => {
 				<div className="review-detail-container">
 					<div className="review-not-found">
 						<h2>Review not found</h2>
-						<button onClick={() => navigate("/")} className="back-button">
+						<button onClick={() => navigate(-1)} className="back-button">
 							Go Back
 						</button>
 					</div>
