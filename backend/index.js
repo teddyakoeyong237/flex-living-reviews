@@ -14,7 +14,7 @@ app.use("/api", reviewsRouter);
 
 // Health Check Route
 app.get("/", (req, res) => {
-	res.json({ message: "Flex Living Reviews API", status: "running" });
+	res.json({ message: "Mock Flex Living Reviews API", status: "running" });
 });
 
 app.listen(PORT, () => {
