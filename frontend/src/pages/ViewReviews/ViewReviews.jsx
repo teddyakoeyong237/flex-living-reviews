@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useReviews } from "../../context/ReviewContext";
 import ReviewCard from "../../components/property/ReviewCard";
-import "./ViewReviews.css";
 import Navbar from "../../layout/Navbar";
+import "./ViewReviews.css";
 
 const ViewReviews = () => {
 	const { reviews, loading } = useReviews();
@@ -14,7 +14,7 @@ const ViewReviews = () => {
 	}, []);
 
 	const handleReviewClick = (review) => {
-		navigate(`/views/${review.id}`);
+		navigate(`/views/${review.id}`, { state: { context: "filtered" } });
 	};
 
 	if (loading) {

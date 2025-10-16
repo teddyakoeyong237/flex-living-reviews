@@ -58,7 +58,7 @@ const ListReviews = ({ reviews, loading }) => {
 				<span
 					onClick={(e) => {
 						e.stopPropagation(); // prevent row selection/double-click
-						navigate(`/views/${params.value}`);
+						navigate(`/views/${params.value}`, { state: { context: "all" } });
 					}}
 					style={{
 						color: "blue",
