@@ -12,6 +12,11 @@ app.use(express.json());
 // Routes
 app.use("/api", reviewsRouter);
 
+// Health Check Route
+app.get("/", (req, res) => {
+	res.json({ message: "Flex Living Reviews API", status: "running" });
+});
+
 app.listen(PORT, () => {
 	console.log(`Server is listening on port ${PORT}`);
 });
