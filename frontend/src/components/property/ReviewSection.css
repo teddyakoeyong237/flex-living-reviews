@@ -1,0 +1,265 @@
+.review-section {
+	margin-bottom: 60px;
+}
+
+.section-title {
+	font-size: 28px;
+	font-weight: 600;
+	color: #1f2937;
+	margin: 0 0 30px 0;
+}
+
+.review-section-card {
+	background: #ffffff;
+	border: 1px solid #e5e7eb;
+	border-radius: 16px;
+	padding: 40px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.review-header-section {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-bottom: 30px;
+	border-bottom: 2px solid #f3f4f6;
+	margin-bottom: 30px;
+}
+
+.guest-section {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.guest-avatar-large {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	background: linear-gradient(135deg, #2d5f5d, #4a8886);
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 32px;
+	font-weight: 600;
+	flex-shrink: 0;
+}
+
+.guest-info h3 {
+	font-size: 24px;
+	font-weight: 600;
+	color: #1f2937;
+	margin: 0 0 8px 0;
+}
+
+.review-date {
+	font-size: 15px;
+	color: #6b7280;
+	margin: 0;
+}
+
+.review-meta-badges {
+	display: flex;
+	gap: 10px;
+	flex-wrap: wrap;
+}
+
+.review-type-badge,
+.status-badge {
+	padding: 8px 16px;
+	border-radius: 20px;
+	font-size: 13px;
+	font-weight: 600;
+	text-transform: capitalize;
+}
+
+.review-type-badge {
+	background: #f3f4f6;
+	color: #6b7280;
+}
+
+.status-badge {
+	color: white;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.rating-display {
+	display: flex;
+	align-items: center;
+	gap: 30px;
+	padding: 30px;
+	background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+	border-radius: 12px;
+	margin-bottom: 30px;
+}
+
+.rating-score-large {
+	display: flex;
+	align-items: baseline;
+	gap: 5px;
+}
+
+.rating-score-large .score {
+	font-size: 64px;
+	font-weight: 700;
+	color: #2d5f5d;
+	line-height: 1;
+}
+
+.rating-score-large .max-score {
+	font-size: 28px;
+	color: #6b7280;
+}
+
+.rating-stars-large {
+	display: flex;
+	gap: 6px;
+}
+
+.star {
+	font-size: 28px;
+	color: #d1d5db;
+}
+
+.star.filled {
+	color: #f59e0b;
+}
+
+.review-text-content,
+.categories-breakdown,
+.review-metadata-section {
+	padding-top: 30px;
+	border-top: 1px solid #f3f4f6;
+	margin-top: 30px;
+}
+
+.review-text-content h3,
+.categories-breakdown h3,
+.review-metadata-section h3 {
+	font-size: 20px;
+	font-weight: 600;
+	color: #1f2937;
+	margin: 0 0 20px 0;
+}
+
+.review-text-content p {
+	font-size: 16px;
+	line-height: 1.8;
+	color: #374151;
+	margin: 0;
+}
+
+.categories-list {
+	display: grid;
+	gap: 20px;
+}
+
+.category-item {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.category-info {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.category-label {
+	font-size: 15px;
+	font-weight: 500;
+	color: #4b5563;
+	text-transform: capitalize;
+}
+
+.category-score {
+	font-size: 16px;
+	font-weight: 700;
+	color: #2d5f5d;
+}
+
+.category-bar {
+	width: 100%;
+	height: 12px;
+	background: #e5e7eb;
+	border-radius: 6px;
+	overflow: hidden;
+}
+
+.category-fill {
+	height: 100%;
+	background: linear-gradient(90deg, #2d5f5d, #4a8886);
+	transition: width 0.5s ease;
+	border-radius: 6px;
+}
+
+.metadata-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 24px;
+	padding: 24px;
+	background: #f9fafb;
+	border-radius: 12px;
+}
+
+.metadata-item {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.metadata-label {
+	font-size: 13px;
+	color: #6b7280;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	font-weight: 500;
+}
+
+.metadata-value {
+	font-size: 15px;
+	font-weight: 600;
+	color: #1f2937;
+	text-transform: capitalize;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+	.review-section-card {
+		padding: 25px 20px;
+	}
+
+	.review-header-section {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 20px;
+	}
+
+	.guest-avatar-large {
+		width: 60px;
+		height: 60px;
+		font-size: 24px;
+	}
+
+	.guest-info h3 {
+		font-size: 20px;
+	}
+
+	.rating-display {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 15px;
+	}
+
+	.rating-score-large .score {
+		font-size: 48px;
+	}
+
+	.metadata-grid {
+		grid-template-columns: 1fr;
+		gap: 16px;
+	}
+}
