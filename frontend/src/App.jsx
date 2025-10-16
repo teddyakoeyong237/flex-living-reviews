@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	Navigate,
+} from "react-router-dom";
 
 import ReviewDetail from "./pages/ReviewDetail/ReviewDetail";
 import Dashboard from "./pages/Dashboard/Dashboard";
@@ -16,6 +21,7 @@ function App() {
 			<ReviewProvider>
 				<Router>
 					<Routes>
+						<Route path="/" element={<Navigate to="/views" replace />} />
 						<Route path="/views/:id" element={<ReviewDetail />} />
 						<Route path="/views" element={<ViewReviews />} />
 						<Route
