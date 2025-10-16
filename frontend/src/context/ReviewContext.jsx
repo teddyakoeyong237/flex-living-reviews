@@ -3,7 +3,7 @@ import axios from "axios";
 
 const ReviewContext = createContext();
 
-const baseURL = "http://localhost:8000";
+const baseURL = import.meta.env.VITE_API_URL;
 
 export const ReviewProvider = ({ children }) => {
 	const [reviews, setReviews] = useState([]);

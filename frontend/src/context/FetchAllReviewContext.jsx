@@ -3,11 +3,11 @@ import axios from "axios";
 
 export const FetchAllReviewContext = createContext();
 
+const baseURL = import.meta.env.VITE_API_URL;
+
 export const FetchAllReviewProvider = ({ children }) => {
 	const [reviews, setReviews] = useState([]);
 	const [loading, setLoading] = useState(true);
-
-	const baseURL = "http://localhost:8000";
 
 	useEffect(() => {
 		const fetchReviews = async () => {
