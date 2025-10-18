@@ -10,9 +10,19 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 const ListReviews = ({ reviews, loading }) => {
 	const navigate = useNavigate();
 
-	const handleRowClick = (event) => {
-		const id = event.data.id; // assuming each review has an id field
-		navigate(`/views/${id}`); // redirect to detail page
+	// Date filter parameters
+	var filterParams = {
+		comparator: (filterLocalDateAtMidnight, cellValue) => {
+			const cellDate = new Date(cellValue);
+
+			if (cellDate < filterLocalDateAtMidnight) {
+				return -1;
+			} else if (cellDate > filterLocalDateAtMidnight) {
+				return 1;
+			}
+			return 0;
+		},
+		filterOptions: ["greaterThan", "lessThan"], // Limit date filter to greater and less than.
 	};
 
 	// Date formatter
@@ -32,14 +42,7 @@ const ListReviews = ({ reviews, loading }) => {
 		)} (${params.value}/10)`;
 	};
 
-	// Categories renderer
-	const categoriesRenderer = (params) => {
-		if (!params.value || Object.keys(params.value).length === 0) return "-";
-		return Object.entries(params.value)
-			.map(([key, val]) => `${key}: ${val}`)
-			.join(", ");
-	};
-
+	// Status options for dropdown
 	const statusOptions = [
 		"awaiting",
 		"pending",
@@ -57,7 +60,7 @@ const ListReviews = ({ reviews, loading }) => {
 			cellRenderer: (params) => (
 				<span
 					onClick={(e) => {
-						e.stopPropagation(); // prevent row selection/double-click
+						e.stopPropagation();
 						navigate(`/views/${params.value}`, { state: { context: "all" } });
 					}}
 					style={{
@@ -88,6 +91,9 @@ const ListReviews = ({ reviews, loading }) => {
 			width: 180,
 			cellRenderer: ratingRenderer,
 			filter: "agNumberColumnFilter",
+			filterParams: {
+				defaultOption: "greaterThanOrEqual",
+			},
 		},
 		{
 			field: "type",
@@ -113,10 +119,69 @@ const ListReviews = ({ reviews, loading }) => {
 			autoHeight: true,
 		},
 		{
-			field: "reviewCategory",
-			headerName: "Categories",
-			width: 300,
-			cellRenderer: categoriesRenderer,
+			field: "reviewCategory.cleanliness",
+			headerName: "Cleanliness",
+			width: 130,
+			filter: "agNumberColumnFilter",
+			filterParams: {
+				defaultOption: "greaterThanOrEqual",
+			},
+			valueGetter: (params) => {
+				const value = params.data.reviewCategory?.cleanliness;
+				return value ?? "-";
+			},
+		},
+		{
+			field: "reviewCategory.communication",
+			headerName: "Communication",
+			width: 150,
+			filter: "agNumberColumnFilter",
+			filterParams: {
+				defaultOption: "greaterThanOrEqual",
+			},
+			valueGetter: (params) => {
+				const value = params.data.reviewCategory?.communication;
+				return value ?? "-";
+			},
+		},
+		{
+			field: "reviewCategory.check-in",
+			headerName: "Check-in",
+			width: 120,
+			filter: "agNumberColumnFilter",
+			filterParams: {
+				defaultOption: "greaterThanOrEqual",
+			},
+			valueGetter: (params) => {
+				const value = params.data.reviewCategory?.["check-in"];
+				return value ?? "-";
+			},
+		},
+		{
+			field: "reviewCategory.accuracy",
+			headerName: "Accuracy",
+			width: 120,
+			filter: "agNumberColumnFilter",
+			filterParams: {
+				defaultOption: "greaterThanOrEqual",
+			},
+			valueGetter: (params) => {
+				const value = params.data.reviewCategory?.accuracy;
+				return value ?? "-";
+			},
+		},
+		{
+			field: "reviewCategory.location",
+			headerName: "Location",
+			width: 120,
+			filter: "agNumberColumnFilter",
+			filterParams: {
+				defaultOption: "greaterThanOrEqual",
+			},
+			valueGetter: (params) => {
+				const value = params.data.reviewCategory?.location;
+				return value ?? "-";
+			},
 		},
 		{
 			field: "submittedAt",
@@ -124,6 +189,7 @@ const ListReviews = ({ reviews, loading }) => {
 			width: 150,
 			valueFormatter: dateFormatter,
 			filter: "agDateColumnFilter",
+			filterParams: filterParams,
 		},
 	]);
 
@@ -159,7 +225,6 @@ const ListReviews = ({ reviews, loading }) => {
 				paginationPageSize={10}
 				paginationPageSizeSelector={[10, 25, 50, 100]}
 				domLayout="autoHeight"
-				// onRowDoubleClicked={handleRowClick}
 			/>
 		</div>
 	);
